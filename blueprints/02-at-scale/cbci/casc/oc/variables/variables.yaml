@@ -1,6 +1,6 @@
 variables:
   - message: "Welcome to the CloudBees CI blueprint add-on: At scale!"
-  - cascRepo: "https://github.com/cloudbees/terraform-aws-cloudbees-ci-eks-addon.git"
+  - cascRepo: "https://github.com/eoludotun/terraform-aws-cloudbees-ci-eks-addon.git"
   - cascBranch: main
   - cascPathController: "/blueprints/02-at-scale/cbci/casc/mc/"
   - ldapManagerDN: "cn=admin,dc=acme,dc=org"
