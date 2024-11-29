@@ -56,66 +56,66 @@ items:
                 - isMasterOnlineFilter: {}
               inParallel: 1
               noRetries: 0
-      - kind: clusterOpProject
-        name: backup-all-controllers
-        triggers:
-        - cron:
-            spec: '@daily'
-        operations:
-          - managedMasterClusterOperation:
-              failureMode: IMMEDIATELY
-              clusterOpSteps:
-              - backupClusterOpStep:
-                  subjects:
-                  - buildRecordSubject: {
-                      }
-                  - jobConfigurationSubject: {
-                      }
-                  - systemConfigurationSubject:
-                      omitMasterKey: true
-                  format:
-                    tarGzFormat: {
-                      }
-                  safeDelaySeconds: 0
-                  store:
-                    s3Store:
-                      bucketName: "${sec_s3bucketName}"
-                      bucketFolder: "${s3bucketPreffix}/backup"
-                      region: "${sec_awsRegion}"
-                  retentionPolicy:
-                    upToNRetentionPolicy:
-                      n: 5
-              itemSource:
-                jenkinsRootItemSource: {
-                  }
-              filters:
-              - isMasterOnlineFilter: {
-                  }
-      - kind: backupAndRestore
-        name: backup-cjoc
-        triggers:
-          - cron:
-              spec: '@daily'
-        buildersList:
-        - backupBuilder:
-            subjects:
-            - buildRecordSubject: {
-                }
-            - jobConfigurationSubject: {
-                }
-            - systemConfigurationSubject:
-                omitMasterKey: true
-            format:
-              tarGzFormat: {
-                }
-            exclusive: false
-            store:
-              s3Store:
-                bucketName: "${sec_s3bucketName}"
-                bucketFolder: "${s3bucketPreffix}/backup"
-                region: "${sec_awsRegion}"
-            retentionPolicy:
-              upToNRetentionPolicy:
-                n: 5
-            safeDelaySeconds: 0
-        concurrentBuild: false
+      # - kind: clusterOpProject
+      #   name: backup-all-controllers
+      #   triggers:
+      #   - cron:
+      #       spec: '@daily'
+      #   operations:
+      #     - managedMasterClusterOperation:
+      #         failureMode: IMMEDIATELY
+      #         clusterOpSteps:
+      #         - backupClusterOpStep:
+      #             subjects:
+      #             - buildRecordSubject: {
+      #                 }
+      #             - jobConfigurationSubject: {
+      #                 }
+      #             - systemConfigurationSubject:
+      #                 omitMasterKey: true
+      #             format:
+      #               tarGzFormat: {
+      #                 }
+      #             safeDelaySeconds: 0
+      #             store:
+      #               s3Store:
+      #                 bucketName: "${sec_s3bucketName}"
+      #                 bucketFolder: "${s3bucketPreffix}/backup"
+      #                 region: "${sec_awsRegion}"
+      #             retentionPolicy:
+      #               upToNRetentionPolicy:
+      #                 n: 5
+      #         itemSource:
+      #           jenkinsRootItemSource: {
+      #             }
+      #         filters:
+      #         - isMasterOnlineFilter: {
+      #             }
+      # - kind: backupAndRestore
+      #   name: backup-cjoc
+      #   triggers:
+      #     - cron:
+      #         spec: '@daily'
+      #   buildersList:
+      #   - backupBuilder:
+      #       subjects:
+      #       - buildRecordSubject: {
+      #           }
+      #       - jobConfigurationSubject: {
+      #           }
+      #       - systemConfigurationSubject:
+      #           omitMasterKey: true
+      #       format:
+      #         tarGzFormat: {
+      #           }
+      #       exclusive: false
+      #       store:
+      #         s3Store:
+      #           bucketName: "${sec_s3bucketName}"
+      #           bucketFolder: "${s3bucketPreffix}/backup"
+      #           region: "${sec_awsRegion}"
+      #       retentionPolicy:
+      #         upToNRetentionPolicy:
+      #           n: 5
+      #       safeDelaySeconds: 0
+      #   concurrentBuild: false
