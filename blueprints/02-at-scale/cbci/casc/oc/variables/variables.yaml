@@ -7,6 +7,6 @@ variables:
   - ldapRootDN: "dc=acme,dc=org"
   - ldapServer: "openldap-stack.auth.svc.cluster.local"
   - ldapUserSearch: "cn={0}"
-  - vault_url: "http://vault.vault.svc.cluster.local:8200"
+  # - vault_url: "http://vault.vault.svc.cluster.local:8200"
   - cascSecretsName: "cbci-sec-casc"
-  - s3bucketPreffix: "cbci"
+  # - s3bucketPreffix: "cbci"
